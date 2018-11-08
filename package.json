@@ -1,0 +1,15 @@
+{
+  "name": "demo-polymer3-pwa",
+  "version": "1.0.0",
+  "description": "basic progressive web app with polymer 3 framework",
+  "main": "index.html",
+  "repository": "git@github.com:razvan-rosu/demo-polymer3-pwa.git",
+  "author": "Răzvan Roșu",
+  "license": "MIT",
+  "private": null,
+  "dependencies": {
+    "@polymer/lit-element": "^0.6.2",
+    "@polymer/polymer": "^3.1.0",
+    "@webcomponents/webcomponentsjs": "^2.1.3"
+  }
+}
