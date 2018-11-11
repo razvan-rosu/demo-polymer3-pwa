@@ -16,12 +16,11 @@
     import {repeat} from 'https://unpkg.com/lit-html@0.12.0/directives/repeat.js?module';
 
     /**
-     * logo-image component
+     * Logo component
      */
     class LogoComponent extends LitElement {
         constructor() {
             super();
-            console.log('>>>logo-component:', this);
         }
 
         static get properties() {
@@ -38,6 +37,7 @@
                 <style>
                     :host {
                         display: inline-block;
+                        background-color: #0f0;
                     }
 
                     .LogoComponent {
@@ -75,7 +75,8 @@
             return html`
                 <style>
                     :host {
-                        display: inline-block;
+                        display: block;
+                        background-color: #f0f;
                     }
 
                     .NavigationComponent {
@@ -106,7 +107,7 @@
                 </style>
 
                 <ul class="NavigationComponent">
-                    ${repeat(this.items, i => i.label, i => html`
+                    ${repeat(JSON.parse(this.items), i => html`
                         <li class="NavigationComponent-item">
                             <a class="NavigationComponent-link" href=${i.link}>
                                 ${i.label}
@@ -120,7 +121,7 @@
     customElements.define('navigation-component', NavigationComponent);
 
     /**
-     * Custom Header Component
+     * Header Component (Logo + Navigation)
      */
     class CustomHeader extends LitElement {
         constructor() {
@@ -130,7 +131,6 @@
         static get properties() {
             return {
                 headerLogo: {type: Object},
-                headerTitle: {type: String},
                 headerNav: {type: Array}
             };
         }
@@ -147,20 +147,19 @@
                         flex-direction: row;
                         align-items: center;
                         justify-content: space-between;
-                        background-color: #eee;
+                        background-color: #0ff;
                         border: 5px solid #ddd;
                     }
                 </style>
+
                 <header class="CustomHeader">
                     <logo-component
-                        .logourl=${this.headerLogo.logourl}
-                        .imageurl=${this.headerLogo.imageurl}
-                        .imagealt=${this.headerLogo.imagealt}
-                        .imagetitle=${this.headerLogo.imagetitle}
+                        logourl=${JSON.parse(this.headerLogo).logourl}
+                        imageurl=${JSON.parse(this.headerLogo).imageurl}
+                        imagealt=${JSON.parse(this.headerLogo).imagealt}
+                        imagetitle=${JSON.parse(this.headerLogo).imagetitle}
                     ></logo-component>
-
-                    <h1>${this.headerTitle}</h1>
-
+                    <div><slot></slot></div>
                     <navigation-component .items=${this.headerNav}></navigation-component>
                 </header>
             `
@@ -193,6 +192,7 @@
 
                     .Card {
                         padding: 15px;
+                        background-color: #ff0;
                         border: 1px solid #000;
 
                         display: flex;
@@ -302,20 +302,17 @@
     customElements.define('pwa-card', PwaCard);
 
     /**
-     * Counter component
+     * Listing component (PWA cards)
      */
     class CardList extends LitElement {
       constructor() {
         super();
-        console.log('CardList', this);
-        this.items = [{"title":"Card 1 title","description":"Lorem ipsum dolor sit amed description"},{"title":"Card 2 title","description":"Lorem ipsum gigi card deux v3 final"}];
       }
 
       static get properties() {
         return {
-          data: {type: Array},
-          items: {type: Array},
           title: {type: String},
+          items: {type: Array},
         };
       }
 
@@ -325,7 +322,7 @@
             :host {
               display: block;
               padding: 15px;
-              background-color: #eee;
+              background-color: #f00;
             }
 
             .NavigationComponent {
@@ -342,7 +339,7 @@
 
           <h3>${this.title}</h3>
           <ul class="NavigationComponent">
-            ${repeat(this.items, i => i.title, i => html`
+            ${repeat(JSON.parse(this.items), i => html`
               <li class="NavigationComponent-item">
                 <pwa-card title="${i.title}" description="${i.description}"></pwa-card>
               </li>
@@ -353,25 +350,96 @@
     }
     customElements.define('card-list', CardList);
 
+    /**
+     * Footer component
+     */
+    class CustomFooter extends LitElement {
+      constructor() {
+        super();
+      }
+
+      static get properties() {
+        return {};
+      }
+
+      render() {
+        return html`
+          <style>
+            :host {
+              display: block;
+              background-color: #00F;
+            }
+
+            .Footer {
+              text-align: center;
+              color: #FFF;
+            }
+
+            .Footer p {
+              margin-top: 0;
+              margin-bottom: 0;
+            }
+          </style>
+
+          <footer class="Footer">
+            <p><slot></slot></p>
+          </footer>
+        `
+      }
+    }
+    customElements.define('custom-footer', CustomFooter);
 </script>
 <body>
+  <style>
+    html {
+      line-height: 1.15;
+      -webkit-text-size-adjust: 100%;
+    }
 
-    <custom-header headerTitle="Pied Piper PWA"></custom-header>
+    body {
+      margin: 0;
+    }
 
-    <card-list title="List of articles and stuff..."></card-list>
+    main {
+      display: block;
+    }
 
-    <script>
-        /**
-         * assign attributes (header-logo type stringified obj, header-nav type strigified arr of obj) to custom-header component
-         */
-        const customHeaderLogoData = {"logourl":"#","imageurl":"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/052016/untitled-1_183.png","imagealt":"Pied Piper logo","imagetitle":"Pied Piper"};
-        document.querySelector('custom-header').headerLogo = customHeaderLogoData;
+    .App {
+      display: flex;
+      height: 100vh;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: space-between;
+      overflow: hidden;
+    }
 
-        const customHeaderNavData = [{"link":"http://google.com","label":"Google"},{"link":"#","label":"Yandex"},{"link":"#","label":"DuckDuckGo"}];
-        document.querySelector('custom-header').headerNav = customHeaderNavData;
+    custom-header,
+    custom-footer {
+      flex: 0;
+    }
 
-        const cardListData = [{"title":"Card 1 title","description":"Lorem ipsum dolor sit amed description"},{"title":"Card 2 title","description":"Lorem ipsum gigi card deux v3 final"}];
-        document.querySelector('card-list').setAttribute('data', JSON.stringify(cardListData));
-    </script>
+    main {
+      flex: 1;
+      overflow-y: scroll;
+    }
+  </style>
+
+  <div class="App">
+    <custom-header
+      headerLogo='{"logourl":"#","imageurl":"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/052016/untitled-1_183.png","imagealt":"Pied Piper logo","imagetitle":"Pied Piper"}'
+      headerNav='[{"link":"http://google.com","label":"Google"},{"link":"#","label":"Yandex"},{"link":"#","label":"DuckDuckGo"}]'>
+        <h1>Pied Piper PWA cna</h1>
+    </custom-header>
+
+    <main>
+      <card-list
+        title="List of articles and stuff..."
+        items='[{"title":"Card 1 title","description":"Lorem ipsum dolor sit amed description"},{"title":"Card 2 title","description":"Lorem ipsum gigi card deux v3 final"}]'
+      ></card-list>
+      <card-list-breadcrumbs></card-list-breadcrumbs>
+    </main>
+
+    <custom-footer>Copyright &copy; Manticores 2018</custom-footer>
+  </div>
 </body>
 </html>
