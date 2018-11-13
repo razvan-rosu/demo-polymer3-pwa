@@ -148,7 +148,6 @@
                         align-items: center;
                         justify-content: space-between;
                         background-color: #0ff;
-                        border: 5px solid #ddd;
                     }
                 </style>
 
@@ -351,6 +350,73 @@
     customElements.define('card-list', CardList);
 
     /**
+     * Breabcrumbs Component
+     */
+    class BreadcrumbsComponent extends LitElement {
+      constructor() {
+        super();
+        this.clickMethod = this.clickMethod.bind(this);
+      }
+
+      static get properties() {
+        return {
+          pages: {type: Array}
+        };
+      }
+
+      clickMethod(number) {
+        console.log(`clicked on: ${number}`);
+      }
+
+      render() {
+        return html`
+          <style>
+            :host {
+              display: block;
+              padding: 5px;
+              background-color: #ddd;
+            }
+
+            .Breadcrumbs {
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              justify-content: flex-end;
+
+              list-style-type: none;
+              padding-left: 0;
+              margin-bottom: 0;
+              margin-top: 0;
+            }
+
+            .Breadcrumbs-item {
+              margin: 5px;
+            }
+
+            .Button {
+              display: block;
+              padding: 5px 15px;
+              background-color: #aaa;
+              border: 0;
+            }
+
+            .Button--selected {
+              background-color: #0F0;
+            }
+          </style>
+
+          <ul class="Breadcrumbs">
+            <li class="Breadcrumbs-item"><button type="button" @click="${this.clickMethod.bind(null, 'all')}" class="Button Button--selected">All</button></li>
+            <li class="Breadcrumbs-item"><button type="button" @click="${this.clickMethod.bind(null, 1)}" class="Button">1</button></li>
+            <li class="Breadcrumbs-item"><button type="button" @click="${this.clickMethod.bind(null, 2)}" class="Button">2</button></li>
+            <li class="Breadcrumbs-item"><button type="button" @click="${this.clickMethod.bind(null, 3)}" class="Button">3</button></li>
+          </ul>
+        `
+      }
+    }
+    customElements.define('breadcrumbs-component', BreadcrumbsComponent);
+
+    /**
      * Footer component
      */
     class CustomFooter extends LitElement {
@@ -422,6 +488,10 @@
       flex: 1;
       overflow-y: scroll;
     }
+
+    breadcrumbs-component {
+      text-align: center;
+    }
   </style>
 
   <div class="App">
@@ -436,7 +506,9 @@
         title="List of articles and stuff..."
         items='[{"title":"Card 1 title","description":"Lorem ipsum dolor sit amed description"},{"title":"Card 2 title","description":"Lorem ipsum gigi card deux v3 final"}]'
       ></card-list>
-      <card-list-breadcrumbs></card-list-breadcrumbs>
+      <breadcrumbs-component
+        pages='[{"id":1},{"id":2},{"id":3},{"id":4}]'
+      ></breadcrumbs-component>
     </main>
 
     <custom-footer>Copyright &copy; Manticores 2018</custom-footer>
