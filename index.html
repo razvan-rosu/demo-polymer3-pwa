@@ -36,7 +36,6 @@
         <style>
           :host {
             display: inline-block;
-            background-color: #0f0;
           }
 
           .LogoComponent {
@@ -45,6 +44,7 @@
 
           .LogoComponent-image {
             display: block;
+            max-height: 150px;
           }
         </style>
 
@@ -76,7 +76,7 @@
         <style>
           :host {
             display: block;
-            background-color: #f0f;
+            background-color: #FFF;
           }
 
           .NavigationComponent {
@@ -140,7 +140,14 @@
         return html`
         <style>
           :host {
-             display: block;
+            display: block;
+            position: relative;
+            z-index: 1;
+            padding-left: 20px;
+            padding-right: 40px;
+            -webkit-box-shadow: 0 0px 10px 0 rgba(0,0,0,0.47);
+            -moz-box-shadow: 0 0px 10px 0 rgba(0,0,0,0.47);
+            box-shadow: 0 0px 10px 0 rgba(0,0,0,0.47);
           }
 
           .CustomHeader {
@@ -148,7 +155,6 @@
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            background-color: #0ff;
           }
         </style>
 
@@ -167,6 +173,90 @@
     }
 
     customElements.define('custom-header', CustomHeader);
+
+    /**
+     * Listing Component (photographers)
+     */
+    class PhotographerList extends LitElement {
+      constructor() {
+        super();
+        this.clickMethod = this.clickMethod.bind(this);
+      }
+
+      static get properties() {
+        return {
+          users: {type: Array}
+        };
+      }
+
+      clickMethod(number) {
+        console.log(`clicked on: ${number}`);
+      }
+
+      render() {
+        return html`
+          <style>
+            :host {
+              display: block;
+              padding: 15px;
+              background-color: #FE7A22;
+            }
+
+            .Title {
+              text-align: center;
+              margin-top: 0px;
+              margin-bottom: 5px;
+            }
+
+            .PhotographerList {
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+
+              list-style-type: none;
+              padding-left: 0;
+              margin-bottom: 0;
+              margin-top: 0;
+            }
+
+            .PhotographerList-item {
+              margin: 5px;
+              width: calc(20% - 10px);
+              flex-basis: calc(20% - 10px);
+            }
+
+            .Photographer {
+              background: #FFF;
+              padding: 10px;
+              border-radius: 5px;
+            }
+
+            .Photographer h3,
+            .Photographer p {
+              margin-top: 0;
+              margin-bottom: 0;
+            }
+          </style>
+
+          <h2 class="Title">${this.title}</h2>
+          <ul class="PhotographerList">
+            ${repeat(JSON.parse(this.users), i => html`
+              <li class="PhotographerList-item">
+                <section class="Photographer">
+                  <h3>${i.name}</h3>
+                  <p>tel: <a href="tel:${i.phone}">${i.phone}</a></p>
+                  <div>
+                    <button type="button" @click="${this.clickMethod.bind(null, i.id)}">View photo album (id: #${i.id})</button>
+                  </div>
+                </section>
+              </li>
+            `)}
+          </ul>
+      `
+      }
+    }
+
+    customElements.define('photographer-list', PhotographerList);
 
     /**
      * Photo Card
@@ -197,7 +287,7 @@
             box-sizing: border-box;
             height: 100%;
             padding: 15px;
-            background-color: #ff0;
+            background-color: #FFF;
             border: 1px solid #000;
           }
 
@@ -281,7 +371,8 @@
           <style>
             :host {
               display: block;
-              background-color: #f00;
+              padding: 10px;
+              background-color: #333;
             }
 
             .Title {
@@ -323,73 +414,6 @@
     customElements.define('photo-card-list', PhotoCardList);
 
     /**
-     * List Users Component
-     */
-    class ListUsers extends LitElement {
-      constructor() {
-        super();
-        this.clickMethod = this.clickMethod.bind(this);
-      }
-
-      static get properties() {
-        return {
-          users: {type: Array}
-        };
-      }
-
-      clickMethod(number) {
-        console.log(`clicked on: ${number}`);
-      }
-
-      render() {
-        return html`
-        <style>
-          :host {
-            display: block;
-            padding: 5px;
-            background-color: #ddd;
-          }
-
-          .Breadcrumbs {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-
-            list-style-type: none;
-            padding-left: 0;
-            margin-bottom: 0;
-            margin-top: 0;
-          }
-
-          .Breadcrumbs-item {
-            margin: 5px;
-          }
-
-          .Button {
-            display: block;
-            padding: 5px 15px;
-            background-color: #aaa;
-            border: 0;
-          }
-
-          .Button--selected {
-            background-color: #0F0;
-          }
-        </style>
-
-        <ul class="Breadcrumbs">
-          <li class="Breadcrumbs-item"><button type="button" @click="${this.clickMethod.bind(null, 'all')}" class="Button Button--selected">All</button></li>
-          <li class="Breadcrumbs-item"><button type="button" @click="${this.clickMethod.bind(null, 10)}" class="Button">First 10</button></li>
-          <li class="Breadcrumbs-item"><button type="button" @click="${this.clickMethod.bind(null, 20)}" class="Button">First 20</button></li>
-        </ul>
-      `
-      }
-    }
-
-    customElements.define('list-users', ListUsers);
-
-    /**
      * Footer component
      */
     class CustomFooter extends LitElement {
@@ -405,13 +429,19 @@
         return html`
         <style>
           :host {
+            position: relative;
+            z-index: 1;
             display: block;
-            background-color: #00F;
+            padding: 10px;
+            background-color: #FFF;
+            -webkit-box-shadow: 0 0px 10px 0 rgba(0,0,0,0.47);
+            -moz-box-shadow: 0 0px 10px 0 rgba(0,0,0,0.47);
+            box-shadow: 0 0px 10px 0 rgba(0,0,0,0.47);
           }
 
           .Footer {
             text-align: center;
-            color: #FFF;
+            color: #000;
           }
 
           .Footer p {
@@ -471,15 +501,16 @@
 
 <div class="App">
   <custom-header
-    headerLogo='{"logourl":"#","imageurl":"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/052016/untitled-1_183.png","imagealt":"Pied Piper logo","imagetitle":"Pied Piper"}'
+    headerLogo='{"logourl":"#","imageurl":"assets/manticore.png","imagealt":"Pied Piper logo","imagetitle":"Pied Piper"}'
     headerNav='[{"link":"http://google.com","label":"Google"},{"link":"#","label":"Yandex"},{"link":"#","label":"DuckDuckGo"}]'>
     <h1>Proof of Concept: Polymer 3 P.W.A.</h1>
   </custom-header>
 
   <main>
-    <list-users
-      users='[{"id":1},{"id":2},{"id":3},{"id":4}]'
-    ></list-users>
+    <photographer-list
+      title="Photographers:"
+      users='[{"id":1,"name":"Leanne Graham","username":"Bret","email":"Sincere@april.biz","address":{"street":"Kulas Light","suite":"Apt. 556","city":"Gwenborough","zipcode":"92998-3874","geo":{"lat":"-37.3159","lng":"81.1496"}},"phone":"1-770-736-8031 x56442","website":"hildegard.org","company":{"name":"Romaguera-Crona","catchPhrase":"Multi-layered client-server neural-net","bs":"harness real-time e-markets"}},{"id":2,"name":"Ervin Howell","username":"Antonette","email":"Shanna@melissa.tv","address":{"street":"Victor Plains","suite":"Suite 879","city":"Wisokyburgh","zipcode":"90566-7771","geo":{"lat":"-43.9509","lng":"-34.4618"}},"phone":"010-692-6593 x09125","website":"anastasia.net","company":{"name":"Deckow-Crist","catchPhrase":"Proactive didactic contingency","bs":"synergize scalable supply-chains"}},{"id":3,"name":"Clementine Bauch","username":"Samantha","email":"Nathan@yesenia.net","address":{"street":"Douglas Extension","suite":"Suite 847","city":"McKenziehaven","zipcode":"59590-4157","geo":{"lat":"-68.6102","lng":"-47.0653"}},"phone":"1-463-123-4447","website":"ramiro.info","company":{"name":"Romaguera-Jacobson","catchPhrase":"Face to face bifurcated interface","bs":"e-enable strategic applications"}},{"id":4,"name":"Patricia Lebsack","username":"Karianne","email":"Julianne.OConner@kory.org","address":{"street":"Hoeger Mall","suite":"Apt. 692","city":"South Elvis","zipcode":"53919-4257","geo":{"lat":"29.4572","lng":"-164.2990"}},"phone":"493-170-9623 x156","website":"kale.biz","company":{"name":"Robel-Corkery","catchPhrase":"Multi-tiered zero tolerance productivity","bs":"transition cutting-edge web services"}},{"id":5,"name":"Chelsey Dietrich","username":"Kamren","email":"Lucio_Hettinger@annie.ca","address":{"street":"Skiles Walks","suite":"Suite 351","city":"Roscoeview","zipcode":"33263","geo":{"lat":"-31.8129","lng":"62.5342"}},"phone":"(254)954-1289","website":"demarco.info","company":{"name":"Keebler LLC","catchPhrase":"User-centric fault-tolerant solution","bs":"revolutionize end-to-end systems"}},{"id":6,"name":"Mrs. Dennis Schulist","username":"Leopoldo_Corkery","email":"Karley_Dach@jasper.info","address":{"street":"Norberto Crossing","suite":"Apt. 950","city":"South Christy","zipcode":"23505-1337","geo":{"lat":"-71.4197","lng":"71.7478"}},"phone":"1-477-935-8478 x6430","website":"ola.org","company":{"name":"Considine-Lockman","catchPhrase":"Synchronised bottom-line interface","bs":"e-enable innovative applications"}},{"id":7,"name":"Kurtis Weissnat","username":"Elwyn.Skiles","email":"Telly.Hoeger@billy.biz","address":{"street":"Rex Trail","suite":"Suite 280","city":"Howemouth","zipcode":"58804-1099","geo":{"lat":"24.8918","lng":"21.8984"}},"phone":"210.067.6132","website":"elvis.io","company":{"name":"Johns Group","catchPhrase":"Configurable multimedia task-force","bs":"generate enterprise e-tailers"}},{"id":8,"name":"Nicholas Runolfsdottir V","username":"Maxime_Nienow","email":"Sherwood@rosamond.me","address":{"street":"Ellsworth Summit","suite":"Suite 729","city":"Aliyaview","zipcode":"45169","geo":{"lat":"-14.3990","lng":"-120.7677"}},"phone":"586.493.6943 x140","website":"jacynthe.com","company":{"name":"Abernathy Group","catchPhrase":"Implemented secondary concept","bs":"e-enable extensible e-tailers"}},{"id":9,"name":"Glenna Reichert","username":"Delphine","email":"Chaim_McDermott@dana.io","address":{"street":"Dayna Park","suite":"Suite 449","city":"Bartholomebury","zipcode":"76495-3109","geo":{"lat":"24.6463","lng":"-168.8889"}},"phone":"(775)976-6794 x41206","website":"conrad.com","company":{"name":"Yost and Sons","catchPhrase":"Switchable contextually-based project","bs":"aggregate real-time technologies"}},{"id":10,"name":"Clementina DuBuque","username":"Moriah.Stanton","email":"Rey.Padberg@karina.biz","address":{"street":"Kattie Turnpike","suite":"Suite 198","city":"Lebsackbury","zipcode":"31428-2261","geo":{"lat":"-38.2386","lng":"57.2232"}},"phone":"024-648-3804","website":"ambrose.net","company":{"name":"Hoeger LLC","catchPhrase":"Centralized empowering task-force","bs":"target end-to-end models"}}]'
+    ></photographer-list>
 
     <photo-card-list
       title="Album:"
