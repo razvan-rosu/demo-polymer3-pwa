@@ -22,6 +22,77 @@
     display: block;
   }
 
+  .loader-wrap {
+    position: fixed;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ccc;
+  }
+
+  .loader,
+  .loader:before,
+  .loader:after {
+    background: #FE7A22;
+    -webkit-animation: load1 1s infinite ease-in-out;
+    animation: load1 1s infinite ease-in-out;
+    width: 1em;
+    height: 4em;
+  }
+  .loader {
+    color: #FE7A22;
+    text-indent: -9999em;
+    margin: 88px auto;
+    position: relative;
+    font-size: 11px;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+  }
+  .loader:before,
+  .loader:after {
+    position: absolute;
+    top: 0;
+    content: '';
+  }
+  .loader:before {
+    left: -1.5em;
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+  }
+  .loader:after {
+    left: 1.5em;
+  }
+  @-webkit-keyframes load1 {
+    0%,
+    80%,
+    100% {
+      box-shadow: 0 0;
+      height: 4em;
+    }
+    40% {
+      box-shadow: 0 -2em;
+      height: 5em;
+    }
+  }
+  @keyframes load1 {
+    0%,
+    80%,
+    100% {
+      box-shadow: 0 0;
+      height: 4em;
+    }
+    40% {
+      box-shadow: 0 -2em;
+      height: 5em;
+    }
+  }
+
   .App {
     display: flex;
     height: 100vh;
@@ -45,6 +116,10 @@
     text-align: center;
   }
 </style>
+
+<div class="loader-wrap" id="loader">
+  <div class="loader">Loading...</div>
+</div>
 
 <div class="App">
   <custom-header
@@ -96,11 +171,25 @@
     window.__PHOTOGRAPHERS__ = '[]';
     window.__ALBUMS__ = {};
 
+    // Service Worker for Offline caching
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('./service-worker.js')
+        .then(function() {
+          console.log('SW active!');
+        })
+    }
+
     // GET photographers
     axios.get('https://jsonplaceholder.typicode.com/users')
       .then(function (response) {
         window.__PHOTOGRAPHERS__ = JSON.stringify(response.data);
         document.querySelector('photographer-card-list').setAttribute('photographers', window.__PHOTOGRAPHERS__);
+
+        // Hide Loader
+        const s = document.getElementById('loader').style;
+        s.opacity = 1;
+        (function fade(){(s.opacity-=.1)<0?s.display="none":setTimeout(fade,70)})();
       })
       .catch(function (error) {
         console.log('failed to load photographers', error);
