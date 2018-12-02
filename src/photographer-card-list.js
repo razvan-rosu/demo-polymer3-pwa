@@ -11,7 +11,7 @@ class PhotographerCardList extends LitElement {
 
   static get properties() {
     return {
-      users: {type: Array}
+      photographers: Array
     };
   }
 
@@ -50,7 +50,7 @@ class PhotographerCardList extends LitElement {
 
     <h2 class="Title">${this.title}</h2>
     <ul class="PhotographerCardList">
-      ${repeat(JSON.parse(this.users), i => html`
+      ${repeat(JSON.parse(this.photographers), i => html`
         <li class="PhotographerCardList-item">
           <photographer-card 
             id="${i.id}"
