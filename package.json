@@ -16,6 +16,7 @@
     "test:integration": "polymer build # test that psk builds without error with the CLI"
   },
   "dependencies": {
+    "@bundled-es-modules/axios": "^0.18.0",
     "@polymer/lit-element": "^0.6.2",
     "@polymer/polymer": "^3.1.0",
     "@webcomponents/webcomponentsjs": "^2.2.1",
