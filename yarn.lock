@@ -484,6 +484,11 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
+"@bundled-es-modules/axios@^0.18.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@bundled-es-modules/axios/-/axios-0.18.0.tgz#2187b5240f4dba78228fa4bc3dc9b383de648fb4"
+  integrity sha512-w3/dEG9dAwuFdliiZPn2mw8zknuY0ysT6iMIjv2GmlYEhHRfQkl1FYnKf5Rn0DPFH9VTAXJ566b7OrEyoCL1xQ==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
