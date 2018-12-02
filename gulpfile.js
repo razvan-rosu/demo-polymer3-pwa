@@ -1,15 +1,17 @@
 const gulp = require('gulp');
-const watch = require('gulp-watch');
 const browserSync = require('browser-sync');
 const reload = browserSync.reload;
-var exec = require('child_process').exec;
+const swPrecache = require('sw-precache');
 
-gulp.task('default', ['browser-sync'], () => {
-  gulp.watch(['./assets/*.png', './src/*.js', './index.html']).on('change', reload)
+gulp.task('generate-service-worker', function(callback) {
+  swPrecache.write('./service-worker.js', {
+    staticFileGlobs: [ './**/*.{js,html,css,json,png,jpg,gif,svg,eot,ttf,woff,woff2}' ],
+    stripPrefix: './'
+  }, callback);
 });
 
 gulp.task('browser-sync', function () {
-  // THIS IS FOR SITUATIONS WHEN YOU HAVE ANOTHER SERVER RUNNING
+  // proxies polymer-cli server
   browserSync.init({
     proxy: {
       target: '127.0.0.1:8081/components/demo-polymer3-pwa', // can be [virtual host, sub-directory, localhost with port]
@@ -18,4 +20,8 @@ gulp.task('browser-sync', function () {
     serveStatic: ['.', './assets'],
     open: false
   });
+});
+
+gulp.task('default', ['generate-service-worker', 'browser-sync'], () => {
+  gulp.watch(['./assets/*.png', './src/*.js', './service-worker.js', './index.html']).on('change', reload)
 });
