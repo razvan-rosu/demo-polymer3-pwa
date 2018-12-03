@@ -1,6 +1,7 @@
 {
   "name": "Proof of Concept: Polymer 3 Progressive Web App",
   "short_name": "PoC: PWA",
+  "description": "a demo of a progressive web app made with polymer 3",
   "icons": [
     {
       "src": "assets/android-launchericon-48-48.png",
@@ -60,6 +61,7 @@
   ],
   "start_url": "index.html",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#FE7A22",
   "theme_color": "#FE7A22"
 }
