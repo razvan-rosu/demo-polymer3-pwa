@@ -41,7 +41,7 @@ class CustomHeader extends LitElement {
       
       @media screen and (min-width: 768px) {     
         logo-component {
-          height: auto;
+          height: 150px;
         }
           
         .CustomHeader {
