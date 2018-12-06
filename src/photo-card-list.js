@@ -45,8 +45,22 @@ class PhotoCardList extends LitElement {
 
       .PhotoCardList-item {
         margin: 10px;
-        width: calc(25% - 20px);
-        flex-basis: calc(25% - 20px);
+        width: calc(50% - 20px);
+        flex-basis: calc(50% - 20px);
+      }
+
+      @media screen and (min-width: 480px) {      
+        .PhotoCardList-item {        
+          width: calc(33% - 20px);
+          flex-basis: calc(33% - 20px);
+        }
+      }
+      
+      @media screen and (min-width: 768px) {      
+        .PhotoCardList-item {        
+          width: calc(25% - 20px);
+          flex-basis: calc(25% - 20px);
+        }
       }
     </style>
 
