@@ -37,9 +37,15 @@ class PhotographerCard extends LitElement {
     <style>
       :host {
         display: block;
+        height: 100%;
       }
 
       .Photographer {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
         background: #FFF;
         padding: 10px;
         border-radius: 5px;
