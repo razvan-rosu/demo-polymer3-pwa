@@ -59,7 +59,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/",
+  "start_url": "https://razvan-rosu.github.io/demo-polymer3-pwa/index.html",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#FE7A22",
