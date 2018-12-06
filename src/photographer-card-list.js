@@ -34,6 +34,7 @@ class PhotographerCardList extends LitElement {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        
 
         list-style-type: none;
         padding-left: 0;
@@ -43,8 +44,22 @@ class PhotographerCardList extends LitElement {
 
       .PhotographerCardList-item {
         margin: 5px;
-        width: calc(20% - 10px);
-        flex-basis: calc(20% - 10px);
+        width: calc(50% - 10px);
+        flex-basis: calc(50% - 10px);
+      }
+
+      @media screen and (min-width: 480px) {      
+        .PhotographerCardList-item {     
+          width: calc(33% - 10px);
+          flex-basis: calc(33% - 10px);
+        }
+      }
+
+      @media screen and (min-width: 768px) {      
+        .PhotographerCardList-item {     
+          width: calc(20% - 10px);
+          flex-basis: calc(20% - 10px);
+        }
       }
     </style>
 
