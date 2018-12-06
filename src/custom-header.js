@@ -30,11 +30,30 @@ class CustomHeader extends LitElement {
       }
 
       .CustomHeader {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
+        text-align: center;
       }
+      
+      logo-component {
+        height: 75px;
+      }
+      
+      .Title, navigation-component {display: none;}
+      
+      @media screen and (min-width: 768px) {     
+        logo-component {
+          height: auto;
+        }
+          
+        .CustomHeader {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          text-align: left;
+        }
+        
+        .Title, navigation-component {display: block;}
+      }     
     </style>
 
     <header class="CustomHeader">
@@ -44,7 +63,7 @@ class CustomHeader extends LitElement {
         imagealt=${JSON.parse(this.headerLogo).imagealt}
         imagetitle=${JSON.parse(this.headerLogo).imagetitle}
       ></logo-component>
-      <div><slot></slot></div>
+      <div class="Title"><slot></slot></div>
       <navigation-component .items=${this.headerNav}></navigation-component>
     </header>
     `
