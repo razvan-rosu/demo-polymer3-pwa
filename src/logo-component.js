@@ -26,11 +26,12 @@ class LogoComponent extends LitElement {
 
       .LogoComponent {
         display: block;
+        height: 100%;
       }
 
       .LogoComponent-image {
-        display: block;
-        max-height: 150px;
+        display: block;   
+        max-height: 100%;   
       }
     </style>
 
