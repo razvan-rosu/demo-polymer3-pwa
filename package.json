@@ -9,7 +9,7 @@
   "private": null,
   "scripts": {
     "start": "polymer serve",
-    "build": "polymer build",
+    "build": "polymer build --preset es5-bundled",
     "dev": "gulp",
     "lint": "polymer lint",
     "test": "polymer test",
@@ -22,6 +22,7 @@
     "@webcomponents/webcomponentsjs": "^2.2.1",
     "axios": "^0.18.0",
     "polymer-cli": "^1.9.1",
+    "pwacompat": "^2.0.7",
     "sw-precache": "^5.2.1"
   },
   "devDependencies": {
