@@ -2,20 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="a demo of a progressive web app made with polymer 3">
   <title>Proof of Concept: Polymer 3 P.W.A.</title>
-  <link rel="manifest" href="./manifest.json">
-  <!--apple metatags-->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="PoC PWA">
-  <meta name="apple-touch-icon" content="assets/ios-appicon-152-152.png">
-  <!--MS metatags-->
-  <meta name="msapplication-TileImage" content="assets/ios-appicon-144-144.png">
-  <meta name="msapplication-TileColor" content="#FE7A22">
-
+  <link rel="canonical" href="https://razvan-rosu.github.io/demo-polymer3-pwa">
+  <!-- manifest + polyfill -->
+  <link rel="manifest" href="./manifest.json" />
+  <script async src="./node_modules/pwacompat/pwacompat.min.js"></script>
+  <!-- web components polyfills -->
   <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
   <script src="./node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+  <!-- axios //TODO: to be removed -->
   <script src="./node_modules/axios/dist/axios.min.js"></script>
 </head>
 <body>
