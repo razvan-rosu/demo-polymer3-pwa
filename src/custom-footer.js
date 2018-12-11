@@ -8,10 +8,6 @@ class CustomFooter extends LitElement {
     super();
   }
 
-  static get properties() {
-    return {};
-  }
-
   render() {
     return html`
     <style>
@@ -39,8 +35,28 @@ class CustomFooter extends LitElement {
 
     <footer class="Footer">
       <p><slot></slot></p>
+      <div class="Footer-buttons">
+        <button type="button" @click="${this._AskForPermissions}">Ask for Permissions</button>
+        <button type="button">Notify demo</button>
+      </div>
     </footer>
     `
+  }
+
+  _AskForPermissions(e) {
+    // If Notifications API is supported
+    if ('Notification' in window) {
+      Notification.requestPermission(function(result) {
+        console.log('User chose:', result);
+        if (result !== 'granted') {
+          console.log('User has refused permissions!')
+        } else {
+          console.log('User granted permissions!')
+        }
+      });
+    } else {
+      alert('Browser does not support the Notification API');
+    };
   }
 }
 
