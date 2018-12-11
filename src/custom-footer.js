@@ -27,23 +27,34 @@ class CustomFooter extends LitElement {
         color: #000;
       }
 
-      .Footer p {
+      .Footer-text {
         margin-top: 0;
         margin-bottom: 0;
+      }
+      
+      .Footer-nav {
+        margin-top: 5px;      
+      }
+      
+      .Footer-button {
+        display: inline-block;
+        background: none;
+        border: 1px solid #333;
+        padding: 5px 10px;
       }
     </style>
 
     <footer class="Footer">
-      <p><slot></slot></p>
-      <div class="Footer-buttons">
-        <button type="button" @click="${this._AskForPermissions}">Ask for Permissions</button>
-        <button type="button">Notify demo</button>
+      <p class="Footer-text"><slot></slot></p>
+      <div class="Footer-nav">
+        <button type="button" class="Footer-button" @click="${this._askForPermissions}">Ask for Permissions</button>
+        <button type="button" class="Footer-button" @click="${this._displayNotification}">Notify demo</button>
       </div>
     </footer>
     `
   }
 
-  _AskForPermissions(e) {
+  _askForPermissions(e) {
     // If Notifications API is supported
     if ('Notification' in window) {
       Notification.requestPermission(function(result) {
@@ -56,7 +67,11 @@ class CustomFooter extends LitElement {
       });
     } else {
       alert('Browser does not support the Notification API');
-    };
+    }
+  }
+
+  _displayNotification() {
+    new Notification('This is a legendary notification!');
   }
 }
 
