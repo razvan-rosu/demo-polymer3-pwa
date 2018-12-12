@@ -1,5 +1,4 @@
 import {LitElement, html} from '../node_modules/@polymer/lit-element/lit-element.js';
-import {axios} from '@bundled-es-modules/axios';
 
 /**
  * Listing Component (photographers)
@@ -21,13 +20,18 @@ class PhotographerCard extends LitElement {
   clickMethod(number) {
     console.log(`clicked on: ${number}`);
 
-    // GET photographers
-    axios.get(`https://jsonplaceholder.typicode.com/albums/${number}/photos`)
-      .then(function (response) {
-        window.__ALBUMS__ = JSON.stringify(response.data);
-        document.querySelector('photo-card-list').setAttribute('items', window.__ALBUMS__);
+    // GET albums
+    fetch(`https://jsonplaceholder.typicode.com/albums/${number}/photos`)
+      .then((r) => {
+        if (!r.ok) { throw Error(r.statusText); }
+        return r;
       })
-      .catch(function (error) {
+      .then((r) => r.json())
+      .then((r) => {
+        window.__ALBUMS__ = r;
+        this.albums = r;
+        console.log('>>>', r);
+      }).catch(function (error) {
         console.log('failed to load photos', error);
       });
   }
