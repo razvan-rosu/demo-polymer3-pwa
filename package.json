@@ -6,7 +6,6 @@
   "repository": "git@github.com:razvan-rosu/demo-polymer3-pwa.git",
   "author": "Răzvan Roșu",
   "license": "MIT",
-  "private": null,
   "scripts": {
     "start": "polymer serve",
     "build": "polymer build --preset es5-bundled",
@@ -16,11 +15,9 @@
     "test:integration": "polymer build # test that psk builds without error with the CLI"
   },
   "dependencies": {
-    "@bundled-es-modules/axios": "^0.18.0",
     "@polymer/lit-element": "^0.6.2",
     "@polymer/polymer": "^3.1.0",
     "@webcomponents/webcomponentsjs": "^2.2.1",
-    "axios": "^0.18.0",
     "polymer-cli": "^1.9.1",
     "pwacompat": "^2.0.7",
     "sw-precache": "^5.2.1"
