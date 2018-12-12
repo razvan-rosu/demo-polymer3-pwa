@@ -484,11 +484,6 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@bundled-es-modules/axios@^0.18.0":
-  version "0.18.0"
-  resolved "https://registry.yarnpkg.com/@bundled-es-modules/axios/-/axios-0.18.0.tgz#2187b5240f4dba78228fa4bc3dc9b383de648fb4"
-  integrity sha512-w3/dEG9dAwuFdliiZPn2mw8zknuY0ysT6iMIjv2GmlYEhHRfQkl1FYnKf5Rn0DPFH9VTAXJ566b7OrEyoCL1xQ==
-
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -1510,14 +1505,6 @@ axios@0.17.1:
   integrity sha1-LY4+XQvb1zJ/kbyBT1xXZg+Bgk0=
   dependencies:
     follow-redirects "^1.2.5"
-    is-buffer "^1.1.5"
-
-axios@^0.18.0:
-  version "0.18.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
-  integrity sha1-MtU+SFHv3AoRmTts0AB4nXDAUQI=
-  dependencies:
-    follow-redirects "^1.3.0"
     is-buffer "^1.1.5"
 
 babel-code-frame@^6.26.0:
@@ -3764,7 +3751,7 @@ follow-redirects@0.0.7:
     debug "^2.2.0"
     stream-consume "^0.1.0"
 
-follow-redirects@^1.0.0, follow-redirects@^1.2.5, follow-redirects@^1.3.0:
+follow-redirects@^1.0.0, follow-redirects@^1.2.5:
   version "1.5.10"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
   integrity sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
