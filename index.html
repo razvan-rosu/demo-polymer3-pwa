@@ -12,8 +12,6 @@
   <!-- web components polyfills -->
   <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
   <script src="./node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
-  <!-- axios //TODO: to be removed -->
-  <script src="./node_modules/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <style>
@@ -24,10 +22,6 @@
 
   body {
     margin: 0;
-  }
-
-  main {
-    display: block;
   }
 
   .loader-wrap {
@@ -100,66 +94,16 @@
       height: 5em;
     }
   }
-
-  .App {
-    display: flex;
-    height: 100vh;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: space-between;
-    overflow: hidden;
-  }
-
-  custom-header,
-  custom-footer {
-    flex: 0;
-  }
-
-  main {
-    flex: 1;
-    overflow-y: scroll;
-  }
-
-  breadcrumbs-component {
-    text-align: center;
-  }
 </style>
 
 <div class="loader-wrap" id="loader">
   <div class="loader">Loading...</div>
 </div>
 
-<div class="App">
-  <custom-header
-    headerLogo='{"logourl":"#","imageurl":"assets/manticore.png","imagealt":"Manticore logo","imagetitle":"Manticore"}'
-    headerNav='[{"link":"http://google.com","label":"Google"},{"link":"#","label":"Yandex"},{"link":"#","label":"DuckDuckGo"}]'>
-    <h1>Proof of Concept: Polymer 3 P.W.A.</h1>
-  </custom-header>
+<app-core></app-core>
 
-  <main>
-    <photographer-card-list
-      title="Photographers:"
-      photographers="[]"
-    ></photographer-card-list>
-
-    <photo-card-list
-      title="Album:"
-      items="[]"
-    ></photo-card-list>
-  </main>
-
-  <custom-footer>Copyright &copy; Manticores 2018 - Răzvan Roșu</custom-footer>
-</div>
-
-<!-- include components as es modules -->
-<script type="module" src="./src/logo-component.js"></script>
-<script type="module" src="./src/navigation-component.js"></script>
-<script type="module" src="./src/custom-header.js"></script>
-<script type="module" src="./src/photographer-card.js"></script>
-<script type="module" src="./src/photographer-card-list.js"></script>
-<script type="module" src="./src/photo-card.js"></script>
-<script type="module" src="./src/photo-card-list.js"></script>
-<script type="module" src="./src/custom-footer.js"></script>
+<!-- app component -->
+<script type="module" src="./src/app-core.js"></script>
 
 <script>
   // ES6
@@ -181,27 +125,12 @@
 
     // If Service Workers are supported
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .register('./service-worker.js')
-        .then(function() {
-          console.log('Service Worker active!');
-        })
+      // navigator.serviceWorker
+        // .register('./service-worker.js')
+        // .then(function() {
+        //   console.log('Service Worker active!');
+        // })
     }
-
-    // GET photographers
-    axios.get('https://jsonplaceholder.typicode.com/users')
-      .then(function (response) {
-        window.__PHOTOGRAPHERS__ = JSON.stringify(response.data);
-        document.querySelector('photographer-card-list').setAttribute('photographers', window.__PHOTOGRAPHERS__);
-
-        // Hide Loader
-        const s = document.getElementById('loader').style;
-        s.opacity = 1;
-        (function fade(){(s.opacity-=.1)<0?s.display="none":setTimeout(fade,70)})();
-      })
-      .catch(function (error) {
-        console.log('failed to load photographers', error);
-      });
   })
 </script>
 </body>
