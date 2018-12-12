@@ -1,5 +1,6 @@
 import {LitElement, html} from '../node_modules/@polymer/lit-element/lit-element.js';
 import {repeat} from '../node_modules/lit-html/directives/repeat.js';
+import './photographer-card.js';
 
 /**
  * Listing component (photo cards)
