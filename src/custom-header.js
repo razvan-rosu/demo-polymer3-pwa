@@ -1,4 +1,6 @@
 import {LitElement, html} from '../node_modules/@polymer/lit-element/lit-element.js';
+import './logo-component.js';
+import './navigation-component.js';
 
 /**
  * Header Component (Logo + Navigation)
