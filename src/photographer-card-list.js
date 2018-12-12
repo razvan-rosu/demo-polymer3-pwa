@@ -1,5 +1,6 @@
 import {LitElement, html} from '../node_modules/@polymer/lit-element/lit-element.js';
 import {repeat} from '../node_modules/lit-html/directives/repeat.js';
+import './photo-card.js';
 
 /**
  * Listing Component (photographers)
@@ -65,7 +66,7 @@ class PhotographerCardList extends LitElement {
 
     <h2 class="Title">${this.title}</h2>
     <ul class="PhotographerCardList">
-      ${repeat(JSON.parse(this.photographers), i => html`
+      ${repeat(this.photographers, i => html`
         <li class="PhotographerCardList-item">
           <photographer-card 
             id="${i.id}"
