@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="assets/android-launchericon-48-48.png">
   <meta name="description" content="a demo of a progressive web app made with polymer 3">
   <title>Proof of Concept: Polymer 3 P.W.A.</title>
   <link rel="canonical" href="https://razvan-rosu.github.io/demo-polymer3-pwa">
@@ -44,6 +45,7 @@
     width: 1em;
     height: 4em;
   }
+
   .loader {
     color: #FE7A22;
     text-indent: -9999em;
@@ -56,20 +58,24 @@
     -webkit-animation-delay: -0.16s;
     animation-delay: -0.16s;
   }
+
   .loader:before,
   .loader:after {
     position: absolute;
     top: 0;
     content: '';
   }
+
   .loader:before {
     left: -1.5em;
     -webkit-animation-delay: -0.32s;
     animation-delay: -0.32s;
   }
+
   .loader:after {
     left: 1.5em;
   }
+
   @-webkit-keyframes load1 {
     0%,
     80%,
@@ -82,6 +88,7 @@
       height: 5em;
     }
   }
+
   @keyframes load1 {
     0%,
     80%,
@@ -96,6 +103,10 @@
   }
 </style>
 
+<noscript>
+  You need to enable JavaScript to run this app.
+</noscript>
+
 <div class="loader-wrap" id="loader">
   <div class="loader">Loading...</div>
 </div>
@@ -104,7 +115,6 @@
 
 <!-- app component -->
 <script type="module" src="./src/app-core.js"></script>
-
 <script>
   // ES6
   Document.prototype.ready = callback => {
@@ -121,7 +131,7 @@
   document.ready( () => {
     // SET GLOBAL VARS
     window.__PHOTOGRAPHERS__ = '[]';
-    window.__ALBUMS__ = {};
+    window.__PHOTOS__ = '[]';
 
     // If Service Workers are supported
     if ('serviceWorker' in navigator) {
