@@ -6,7 +6,7 @@ import {LitElement, html} from '../node_modules/@polymer/lit-element/lit-element
 class PhotographerCard extends LitElement {
   constructor() {
     super();
-    this.clickMethod = this.clickMethod.bind(this);
+    this._clickMethod = this._clickMethod.bind(this);
   }
 
   static get properties() {
@@ -17,8 +17,8 @@ class PhotographerCard extends LitElement {
     };
   }
 
-  clickMethod(number) {
-    console.log(`clicked on: ${number}`);
+  _clickMethod(number) {
+    // console.log(`clicked on: ${number}`);
 
     // GET albums
     fetch(`https://jsonplaceholder.typicode.com/albums/${number}/photos`)
@@ -28,10 +28,14 @@ class PhotographerCard extends LitElement {
       })
       .then((r) => r.json())
       .then((r) => {
-        window.__ALBUMS__ = r;
-        this.albums = r;
-        console.log('>>>', r);
-      }).catch(function (error) {
+        window.__PHOTOS__ = r;
+      })
+      .then(() => {
+        // Dispatch the event.
+        const event = new CustomEvent('injectPhotos', { bubbles: true, composed: true });
+        window.dispatchEvent(event);
+      })
+      .catch(function (error) {
         console.log('failed to load photos', error);
       });
   }
@@ -76,7 +80,7 @@ class PhotographerCard extends LitElement {
       <h3>${this.name}</h3>
       <p>tel: <a href="tel:${this.phone}">${this.phone}</a></p>
       <div>
-        <button class="Photographer_c2a" type="button" @click="${this.clickMethod.bind(null, this.id)}">View photo album (id: #${this.id})</button>
+        <button class="Photographer_c2a" type="button" @click="${this._clickMethod.bind(null, this.id)}">View photo album (id: #${this.id})</button>
       </div>
     </section>
     `
