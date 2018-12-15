@@ -13,7 +13,7 @@ class PhotoCardList extends LitElement {
   static get properties() {
     return {
       title: {type: String},
-      items: {type: Array},
+      photos: {type: Array},
     };
   }
 
@@ -67,7 +67,7 @@ class PhotoCardList extends LitElement {
 
     <h2 class="Title">${this.title}</h2>
     <ul class="PhotoCardList">
-      ${repeat(JSON.parse(this.items), i => html`
+      ${repeat((this.photos), i => html`
         <li class="PhotoCardList-item">
           <photo-card id="${i.id}" albumId="${i.albumId}" title="${i.title}" url="${i.url}" thumbnailUrl="${i.thumbnailUrl}"></photo-card>
         </li>
