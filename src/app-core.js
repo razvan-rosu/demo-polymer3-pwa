@@ -1,4 +1,4 @@
-import {LitElement, html} from '../node_modules/@polymer/lit-element/lit-element.js';
+import {LitElement, html} from '@polymer/lit-element';
 import './custom-header.js';
 import './photographer-card-list.js';
 import './photo-card-list.js';
@@ -11,14 +11,13 @@ class AppCore extends LitElement {
   constructor() {
     super();
     this.photographers = [];
+    this.photos = [];
   }
 
   static get properties() {
     return {
-      photographers: {
-        type: Array,
-        value: [],
-      },
+      photographers: Array,
+      photos: Array,
     };
   }
 
@@ -68,7 +67,7 @@ class AppCore extends LitElement {
     
         <photo-card-list
           title="Album:"
-          items="[]"
+          .photos="${this.photos}"
         ></photo-card-list>
       </main>
     
@@ -77,7 +76,8 @@ class AppCore extends LitElement {
     `
   }
 
-  connectedCallback() {
+  firstUpdated() {
+    // get photographers
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((r) => {
         if (!r.ok) { throw Error(r.statusText); }
@@ -88,11 +88,14 @@ class AppCore extends LitElement {
         window.__PHOTOGRAPHERS__ = r;
         this.photographers = r;
       }).catch(function(error) {
-      console.log("failed to load photographers", error);
-    });
-  }
+        console.log("failed to load photographers", error);
+      });
 
-  firstUpdated() {
+    // populate photos
+    window.addEventListener("injectPhotos",(event) => {
+      this.photos = window.__PHOTOS__;
+    }, false);
+
     // Hide Loader when app is loaded
     const s = document.getElementById('loader').style;
     s.opacity = 1;
