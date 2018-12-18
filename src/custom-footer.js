@@ -27,6 +27,19 @@ class CustomFooter extends LitElement {
         color: #000;
       }
 
+      .Footer-offline {
+        display: none;
+        margin: -10px -10px 10px;
+        padding: 10px;
+        text-align: center;
+        color: #FFF;
+        font-weight: bold;
+        background-color: #FF2400;
+        -webkit-transition: 1s ease-in-out;
+        -o-transition: 1s ease-in-out;
+        transition: 1s ease-in-out;
+      }
+
       .Footer-text {
         margin-top: 0;
         margin-bottom: 0;
@@ -45,6 +58,7 @@ class CustomFooter extends LitElement {
     </style>
 
     <footer class="Footer">
+      <div class="Footer-offline" id="offline">Offline mode!</div>
       <p class="Footer-text"><slot></slot></p>
       <div class="Footer-nav">
         <button type="button" class="Footer-button" @click="${this._askForPermissions}">Ask for Permissions</button>
@@ -52,6 +66,28 @@ class CustomFooter extends LitElement {
       </div>
     </footer>
     `
+  }
+
+  firstUpdated() {
+    const statusBar = this.shadowRoot.getElementById('offline');
+
+    // check if app is online/offline
+    window.addEventListener('load', function() {
+      function updateOnlineStatus(event) {
+        if (navigator.onLine) {
+          // handle online status
+          console.log('connection: online');
+          statusBar.style.display = "none";
+        } else {
+          // handle offline status
+          console.log('connection: offline');
+          statusBar.style.display = "block";
+        }
+      }
+
+      window.addEventListener('online', updateOnlineStatus);
+      window.addEventListener('offline', updateOnlineStatus);
+    });
   }
 
   _askForPermissions(e) {
