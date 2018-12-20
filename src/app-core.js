@@ -54,7 +54,7 @@ class AppCore extends LitElement {
 
     <div class="App">
       <custom-header
-        headerLogo='{"logourl":"#","imageurl":"assets/manticore.png","imagealt":"Manticore logo","imagetitle":"Manticore"}'
+        headerLogo='{"logourl":"#","imageurl":"/src/assets/manticore.png","imagealt":"Manticore logo","imagetitle":"Manticore"}'
         headerNav='[{"link":"http://google.com","label":"Google"},{"link":"#","label":"Yandex"},{"link":"#","label":"DuckDuckGo"}]'>
         <h1>Proof of Concept: Polymer 3 P.W.A.</h1>
       </custom-header>
