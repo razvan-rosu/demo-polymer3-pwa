@@ -1,14 +1,6 @@
 const gulp = require('gulp');
 const browserSync = require('browser-sync');
 const reload = browserSync.reload;
-const swPrecache = require('sw-precache');
-
-gulp.task('generate-service-worker', function(callback) {
-  swPrecache.write('./service-worker.js', {
-    staticFileGlobs: [ './**/*.{js,html,css,json,png,jpg,gif,svg,eot,ttf,woff,woff2}' ],
-    stripPrefix: './'
-  }, callback);
-});
 
 gulp.task('browser-sync', function () {
   // proxies polymer-cli server
@@ -22,6 +14,6 @@ gulp.task('browser-sync', function () {
   });
 });
 
-gulp.task('default', ['generate-service-worker', 'browser-sync'], () => {
+gulp.task('default', ['browser-sync'], () => {
   gulp.watch(['./assets/*.png', './src/*.js', './service-worker.js', './index.html']).on('change', reload)
 });
