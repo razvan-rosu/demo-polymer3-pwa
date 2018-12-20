@@ -9,23 +9,21 @@
   "scripts": {
     "start": "polymer serve",
     "build": "polymer build --preset es5-bundled",
-    "dev": "gulp",
-    "lint": "polymer lint",
-    "test": "polymer test",
-    "test:integration": "polymer build # test that psk builds without error with the CLI"
+    "generate-sw": "workbox inject:manifest",
+    "dev": "gulp"
   },
   "dependencies": {
     "@polymer/lit-element": "^0.6.2",
     "@polymer/polymer": "^3.1.0",
     "@webcomponents/webcomponentsjs": "^2.2.1",
     "polymer-cli": "^1.9.1",
-    "pwacompat": "^2.0.7",
-    "sw-precache": "^5.2.1"
+    "pwacompat": "^2.0.7"
   },
   "devDependencies": {
     "browser-sync": "^2.26.3",
     "gulp": "^3.9.1",
     "gulp-watch": "^5.0.1",
-    "wct-browser-legacy": "^1.0.2"
+    "wct-browser-legacy": "^1.0.2",
+    "workbox-cli": "2.1.3"
   }
 }
