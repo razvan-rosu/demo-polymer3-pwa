@@ -3847,7 +3847,7 @@ fs-exists-sync@^0.1.0:
   resolved "https://registry.yarnpkg.com/fs-exists-sync/-/fs-exists-sync-0.1.0.tgz#982d6893af918e72d08dec9e8673ff2b5a8d6add"
   integrity sha1-mC1ok6+RjnLQjeyehnP/K1qNat0=
 
-fs-extra@3.0.1:
+fs-extra@3.0.1, fs-extra@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-3.0.1.tgz#3794f378c58b342ea7dbbb23095109c4b3b62291"
   integrity sha1-N5TzeMWLNC6n27sjCVEJxLO2IpE=
@@ -4711,6 +4711,26 @@ inquirer@^1.0.2:
     run-async "^2.2.0"
     rx "^4.1.0"
     string-width "^1.0.1"
+    strip-ansi "^3.0.0"
+    through "^2.3.6"
+
+inquirer@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-2.0.0.tgz#e1351687b90d150ca403ceaa3cefb1e3065bef4b"
+  integrity sha1-4TUWh7kNFQykA86qPO+x4wZb70s=
+  dependencies:
+    ansi-escapes "^1.1.0"
+    chalk "^1.0.0"
+    cli-cursor "^1.0.1"
+    cli-width "^2.0.0"
+    external-editor "^1.1.0"
+    figures "^2.0.0"
+    lodash "^4.3.0"
+    mute-stream "0.0.6"
+    pinkie-promise "^2.0.0"
+    run-async "^2.2.0"
+    rx "^4.1.0"
+    string-width "^2.0.0"
     strip-ansi "^3.0.0"
     through "^2.3.6"
 
@@ -8269,7 +8289,7 @@ supports-color@^5.3.0:
   dependencies:
     has-flag "^3.0.0"
 
-sw-precache@^5.1.1, sw-precache@^5.2.1:
+sw-precache@^5.1.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/sw-precache/-/sw-precache-5.2.1.tgz#06134f319eec68f3b9583ce9a7036b1c119f7179"
   integrity sha512-8FAy+BP/FXE+ILfiVTt+GQJ6UEf4CVHD9OfhzH0JX+3zoy2uFk7Vn9EfXASOtVmmIVbL3jE/W8Z66VgPSZcMhw==
@@ -8753,7 +8773,7 @@ upath@^1.0.5:
   resolved "https://registry.yarnpkg.com/upath/-/upath-1.1.0.tgz#35256597e46a581db4793d0ce47fa9aebfc9fabd"
   integrity sha512-bzpH/oBhoS/QI/YtbkqCg6VEiPYjSZtrHQM6/QnJS6OL9pKUFLqb3aFh4Scvwm45+7iAgiMkLhSbaZxUqmrprw==
 
-update-notifier@^1.0.0:
+update-notifier@^1.0.0, update-notifier@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/update-notifier/-/update-notifier-1.0.3.tgz#8f92c515482bd6831b7c93013e70f87552c7cf5a"
   integrity sha1-j5LFFUgr1oMbfJMBPnD4dVLHz1o=
@@ -9200,6 +9220,36 @@ wordwrapjs@^3.0.0:
   dependencies:
     reduce-flatten "^1.0.1"
     typical "^2.6.1"
+
+workbox-build@^2.1.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/workbox-build/-/workbox-build-2.1.3.tgz#a8161946d3f85b8cc2590dd3a519d53d40ff8a06"
+  integrity sha512-QuFHYsRFR/ZhWRxU/VMAXUSfCIgol1iRgJ22mV1bM9GGRycW/VqbyhIcY95GjX0V8rNu+8d65t48xjnrtf9hqw==
+  dependencies:
+    chalk "^1.1.3"
+    fs-extra "^3.0.1"
+    glob "^7.1.1"
+    lodash.template "^4.4.0"
+    mkdirp "^0.5.1"
+    workbox-sw "^2.1.3"
+
+workbox-cli@2.1.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/workbox-cli/-/workbox-cli-2.1.3.tgz#0a9ed2d29b5d718601bc4add9f2a7eed64be062f"
+  integrity sha512-ZRCwUhPhQPpaDctLa+7fkm6ZxX6KBZWsXtP5P0baWRFAKkTJG4YfPo6+m7y2FVhQqRYRHZ3XpsyDc0dBEMs1CQ==
+  dependencies:
+    chalk "^1.1.3"
+    fs-extra "^3.0.1"
+    inquirer "^2.0.0"
+    lodash.template "^4.4.0"
+    meow "^3.7.0"
+    update-notifier "^1.0.3"
+    workbox-build "^2.1.3"
+
+workbox-sw@^2.1.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/workbox-sw/-/workbox-sw-2.1.3.tgz#4045560dc26ada7a41fe37999a93c71c43e41d6a"
+  integrity sha512-ZwT1Igbd9gAbn0U8gqachKTCGisS9WFM2j85FvI5K88FfNJ5OlYrDksXQmACRyvX59bwXIo/CGDU7FSsMtRVhw==
 
 wrap-ansi@^2.0.0:
   version "2.1.0"
