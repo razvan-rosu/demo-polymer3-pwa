@@ -1,5 +1,5 @@
 # Demo-polymer3-pwa
-  This demo is entended for a presentation on Progressive Web Apps with litHTML. 
+  This demo is intended for a presentation on Progressive Web Apps with litHTML. 
   Find out what are PWAs and what is their current state in the links below.
 
 ## Presentation links
