@@ -29,9 +29,20 @@ class LogoComponent extends LitElement {
         height: 100%;
       }
 
+      @media screen and (max-width: 479px) {
+        .LogoComponent {
+          width: 150px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
       .LogoComponent-image {
         display: block;   
-        max-height: 100%;   
+        max-height: 100%; 
+        max-width: 100%;  
       }
     </style>
 

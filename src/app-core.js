@@ -1,7 +1,7 @@
 import {LitElement, html} from '@polymer/lit-element';
 import './custom-header.js';
-import './photographer-card-list.js';
-import './photo-card-list.js';
+import './speakers-list.js';
+import './talks-list.js';
 import './custom-footer.js';
 
 /**
@@ -10,14 +10,14 @@ import './custom-footer.js';
 class AppCore extends LitElement {
   constructor() {
     super();
-    this.photographers = [];
-    this.photos = [];
+    this.speakers = [];
+    this.talks = [];
   }
 
   static get properties() {
     return {
-      photographers: Array,
-      photos: Array,
+      speakers: Array,
+      talks: Array,
     };
   }
 
@@ -35,6 +35,7 @@ class AppCore extends LitElement {
         flex-wrap: nowrap;
         align-content: space-between;
         overflow: hidden;
+        background-color: #323230;
       }
     
       main {
@@ -54,30 +55,29 @@ class AppCore extends LitElement {
 
     <div class="App">
       <custom-header
-        headerLogo='{"logourl":"#","imageurl":"/src/assets/manticore.png","imagealt":"Manticore logo","imagetitle":"Manticore"}'
-        headerNav='[{"link":"http://google.com","label":"Google"},{"link":"#","label":"Yandex"},{"link":"#","label":"DuckDuckGo"}]'>
-        <h1>Proof of Concept: Polymer 3 P.W.A.</h1>
+        headerLogo='{"logourl":"#","imageurl":"/src/assets/logo.png","imagealt":"BucharestJS logo","imagetitle":"B JS"}'>
+        <h1>P.W.A. w/ LitHTML</h1>
       </custom-header>
     
       <main>
-        <photographer-card-list
-          title="Photographers:"
-          .photographers="${this.photographers}"
-        ></photographer-card-list>
+        <speakers-list
+          title="Speakers:"
+          .speakers="${this.speakers}"
+        ></speakers-list>
     
-        <photo-card-list
-          title="Album:"
-          .photos="${this.photos}"
-        ></photo-card-list>
+        <talks-list
+          title="Talks:"
+          .talks="${this.talks}"
+        ></talks-list>
       </main>
     
-      <custom-footer>Copyright &copy; Manticores 2018 - Răzvan Roșu</custom-footer>
+      <custom-footer>Copyright &copy; BucharestJS 2019 - Răzvan Roșu</custom-footer>
     </div>
     `
   }
 
   firstUpdated() {
-    // get photographers
+    // get speakers
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((r) => {
         if (!r.ok) { throw Error(r.statusText); }
@@ -85,15 +85,15 @@ class AppCore extends LitElement {
       })
       .then((r) => r.json())
       .then((r) => {
-        window.__PHOTOGRAPHERS__ = r;
-        this.photographers = r;
+        window.__SPEAKERS__ = r;
+        this.speakers = r;
       }).catch(function(error) {
-        console.log("failed to load photographers", error);
+        console.log("failed to load speakers", error);
       });
 
-    // populate photos
-    window.addEventListener("injectPhotos",(event) => {
-      this.photos = window.__PHOTOS__;
+    // get talks
+    window.addEventListener("injectTalks",() => {
+      this.talks = window.__TALKS__;
     }, false);
 
     // Hide Loader when app is loaded

@@ -48,7 +48,7 @@ class CustomFooter extends LitElement {
       <p class="Footer-text"><slot></slot></p>
       <div class="Footer-nav">
         <button type="button" class="Footer-button" @click="${this._askForPermissions}">Ask for Permissions</button>
-        <button type="button" class="Footer-button" @click="${this._displayNotification}">Notify demo</button>
+        <button type="button" class="Footer-button" @click="${this._displayNotification}">Notify</button>
       </div>
     </footer>
     `

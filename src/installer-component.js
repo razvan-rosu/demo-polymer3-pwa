@@ -28,9 +28,9 @@ class InstallerComponent extends LitElement {
         font-weight: bold;
         line-height:30px;
         text-decoration:none;
-        color: #FE7A22;
+        color: #323230;
         background-color:#FFF;
-        border: 1px solid #FE7A22;
+        border: 1px solid #323230;
         white-space:nowrap;
         -webkit-transition:all 0.2s ease-in-out;
         -o-transition:all 0.2s ease-in-out;

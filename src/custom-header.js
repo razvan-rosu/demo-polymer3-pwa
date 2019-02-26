@@ -26,6 +26,7 @@ class CustomHeader extends LitElement {
         z-index: 1;
         padding-left: 20px;
         padding-right: 20px;
+        background-color: rgb(239,223,65);
         -webkit-box-shadow: 0 0px 10px 0 rgba(0,0,0,0.47);
         -moz-box-shadow: 0 0px 10px 0 rgba(0,0,0,0.47);
         box-shadow: 0 0px 10px 0 rgba(0,0,0,0.47);
@@ -41,7 +42,7 @@ class CustomHeader extends LitElement {
       
       logo-component {height: 75px;}
       
-      .Title {display: none;}             
+      .Title {display: none;}
         
       @media screen and (min-width: 768px) {    
         logo-component {height: 150px;}
