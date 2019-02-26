@@ -55,7 +55,7 @@ class AppCore extends LitElement {
 
     <div class="App">
       <custom-header
-        headerLogo='{"logourl":"#","imageurl":"/src/assets/logo.png","imagealt":"BucharestJS logo","imagetitle":"B JS"}'>
+        headerLogo='{"logourl":"#","imageurl":"./src/assets/logo.png","imagealt":"BucharestJS logo","imagetitle":"B JS"}'>
         <h1>P.W.A. w/ LitHTML</h1>
       </custom-header>
     
