@@ -9,7 +9,7 @@ workboxSW.router.registerRoute(/.*(?:typicode)\.com.*$/, workboxSW.strategies.st
 workboxSW.precache([
   {
     "url": "index.html",
-    "revision": "fc48f763408ec0073de262f7a131c63a"
+    "revision": "eb8c4b9935b575eddce2afe8bff25d1a"
   },
   {
     "url": "manifest.json",
@@ -72,16 +72,12 @@ workboxSW.precache([
     "revision": "a4580736c54749a39a58624d8114dce3"
   },
   {
-    "url": "src/logo.png",
-    "revision": "a4580736c54749a39a58624d8114dce3"
-  },
-  {
     "url": "sw-base.js",
     "revision": "d88570d9975e1489b6b85f40512b6b8f"
   },
   {
     "url": "sw.js",
-    "revision": "ab568f65a3ce5ccff0d08c8d68dd4d3e"
+    "revision": "d0aed0982c0ddeb24754220b07756262"
   },
   {
     "url": "workbox-sw.prod.v2.1.3.js",
